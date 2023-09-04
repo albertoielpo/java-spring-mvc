@@ -21,7 +21,7 @@ import net.ielpo.javaspringmvc.provider.HttpServiceProviderOptions;
 public class TodosService {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
-    private String baseUrl = "https://node.ielpo.net";
+    private String baseUrl = "https://jsonplaceholder.typicode.com";
 
     @Autowired
     private HttpServiceProvider httpServiceProvider;
