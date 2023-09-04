@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,8 +37,17 @@ public class HelloworldController {
 
         /** prechecks */
         Validate.or400(id.isPresent(), "Id is mandatory");
-        Validate.or400(id.get() > 0 && id.get() < 1000, "Id must be between 0 and 1000");
-        Validate.or500(!id.get().equals(500), "id cannot be 500");
+
+        /** This is a test of +400 managed error */
+        Validate.or400(id.get() > 0 && id.get() <= 205, "Id must be between 0 and 205");
+
+        /** This is a test of +500 managed error: param id == 201 throws +500 error */
+        Validate.or500(!id.get().equals(201), "id cannot be 201");
+
+        /** This is an unmanaged error: param id == 202 throws +500 error: */
+        Assert.isTrue(!id.get().equals(202), "id cannot be 202");
+
+        /** id == 203, 204, 205 should throws HttpServiceProviderException */
 
         this.logger.info("Calling todo fetch data");
         Todos result = this.todosService.fetchData(id.get());
