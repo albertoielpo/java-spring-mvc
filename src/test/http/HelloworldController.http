@@ -1,0 +1,11 @@
+###
+#
+###
+@baseUrl = http://localhost:8080
+
+###
+#
+###
+GET {{baseUrl}}/remote-test?id=1
+Accept: application/json
+Content-Type: application/json

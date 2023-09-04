@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: javaspringmvc
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+app:
+  http-service-provider-timeout: 5
+  global-exception-stack-message: false
