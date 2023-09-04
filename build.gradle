@@ -24,3 +24,10 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+bootRun {
+        jvmArgs=[
+            "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=38090",
+            "-Dspring.application.name=javaspringmvc"]
+        args = ["--spring.profiles.active=local"]
+}
